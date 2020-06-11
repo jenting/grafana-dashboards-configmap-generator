@@ -127,9 +127,9 @@ addConfigMapHeader() {
   local id="$1"
 
   if [ "$id" ]; then
-    cat "$CONFIGMAP_HEADER" | sed "s/name: grafana-dashboards/name: grafana-dashboards-$id/"
+    cat "$CONFIGMAP_HEADER" | sed "s/namespace: monitoring/namespace: $NAMESPACE/" | sed "s/name: grafana-dashboards/name: grafana-dashboards-$id/"
   else
-    cat "$CONFIGMAP_HEADER"
+    cat "$CONFIGMAP_HEADER" | sed "s/namespace: monitoring/namespace: $NAMESPACE/"
   fi
 }
 
